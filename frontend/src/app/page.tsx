@@ -2,7 +2,8 @@ import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import CorporateOverview from "@/components/CorporateOverview";
 import BusinessSegments from "@/components/BusinessSegments";
-import IndustriesServed from "@/components/IndustriesServed";
+import GlobalImpact from "@/components/GlobalImpact";
+import StrategicBoard from "@/components/StrategicBoard";
 import SustainabilityESG from "@/components/SustainabilityESG";
 import InfrastructureOperations from "@/components/InfrastructureOperations";
 import GovernanceCompliance from "@/components/GovernanceCompliance";
@@ -18,11 +19,15 @@ export default function Home() {
       <Hero />
       <CorporateOverview />
       <BusinessSegments />
-      <IndustriesServed />
+      <GlobalImpact />
+      <StrategicBoard />
       <SustainabilityESG />
       <InfrastructureOperations />
       <GovernanceCompliance />
-      <EnterpriseInquiry />
+      <div className="relative overflow-hidden py-20 px-12 bg-brand-surface border-y border-white/5">
+        <div className="absolute inset-0 neo-grid opacity-10 pointer-events-none" />
+        <EnterpriseInquiry />
+      </div>
       <Footer />
     </main>
   );

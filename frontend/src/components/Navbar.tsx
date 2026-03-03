@@ -17,22 +17,26 @@ const NavItem = ({ label, href }: NavItemProps) => (
 
 export default function Navbar() {
     return (
-        <nav className="fixed top-0 w-full z-50 glass-morphism border-b border-white/5 py-6 px-12 flex justify-between items-center">
-            <div className="flex items-center gap-2">
-                <div className="w-8 h-8 bg-brand-green rounded-sm flex items-center justify-center font-bold text-white">N</div>
-                <span className="text-xl font-bold tracking-tighter uppercase">Narayan <span className="text-brand-green">Enterprises</span></span>
+        <nav className="fixed top-0 w-full z-50 glass-morphism border-b border-white/5 py-4 px-12 flex justify-between items-center backdrop-blur-3xl">
+            <div className="flex items-center gap-3">
+                <div className="w-10 h-10 bg-brand-green rounded-sm flex items-center justify-center font-bold text-black shadow-[0_0_20px_rgba(0,255,157,0.4)]">
+                    N
+                </div>
+                <span className="text-xl font-bold tracking-tighter uppercase font-heading">
+                    Narayan <span className="text-brand-green">Enterprises</span>
+                </span>
             </div>
 
-            <div className="hidden md:flex gap-10">
+            <div className="hidden md:flex gap-12">
                 <NavItem label="Solutions" href="#solutions" />
                 <NavItem label="Operations" href="#operations" />
                 <NavItem label="Sustainability" href="#sustainability" />
-                <NavItem label="Governance" href="#governance" />
-                <NavItem label="Investors" href="#investors" />
+                <NavItem label="Strategic" href="#investors" />
             </div>
 
-            <button className="bg-brand-green text-white px-6 py-2 text-sm font-bold uppercase tracking-wider hover:bg-brand-accent transition-all duration-300">
-                Request Quote
+            <button className="relative group overflow-hidden bg-brand-green text-black px-10 py-3 text-xs font-bold uppercase tracking-widest transition-all duration-300 hover:shadow-[0_0_30px_rgba(0,255,157,0.6)]">
+                <span className="relative z-10">Request Industrial Quote</span>
+                <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300" />
             </button>
         </nav>
     );
