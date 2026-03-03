@@ -42,9 +42,7 @@ mongoose.connect(MONGODB_URI)
     .then(() => console.log('Connected to MongoDB Atlas / Local'))
     .catch((err) => console.error('MongoDB connection error:', err));
 
-// Start Server
-app.listen(PORT, () => {
-    console.log(`Narayan Enterprises API running on port ${PORT}`);
+console.log(`Narayan Enterprises API running on port ${PORT}`);
 });
 
 export default app;
