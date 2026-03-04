@@ -11,16 +11,16 @@ const IndustryCard = ({ icon: Icon, title, description, delay }: { icon: any, ti
         viewport={{ once: true, margin: "-50px" }}
         transition={{ duration: 0.6, delay }}
         whileHover={{ y: -5 }}
-        className="glass-panel p-10 group relative overflow-hidden transition-all duration-300"
+        className="glass-panel p-10 group relative overflow-hidden transition-all duration-300 bg-white"
     >
-        <div className="absolute top-0 right-0 w-32 h-32 bg-blue-500/5 rounded-full blur-3xl group-hover:bg-blue-500/20 transition-all duration-500 pointer-events-none" />
+        <div className="absolute top-0 right-0 w-32 h-32 bg-brand-accent/5 rounded-full blur-3xl group-hover:bg-brand-accent/20 transition-all duration-500 pointer-events-none" />
 
-        <div className="w-14 h-14 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center mb-8 group-hover:bg-blue-500/10 group-hover:border-blue-500/20 transition-colors duration-300">
-            <Icon className="w-6 h-6 text-gray-300 group-hover:text-blue-400 group-hover:scale-110 transition-all duration-300" />
+        <div className="w-14 h-14 rounded-2xl bg-brand-background border border-brand-border flex items-center justify-center mb-8 group-hover:bg-brand-accent/10 group-hover:border-brand-accent/20 transition-colors duration-300">
+            <Icon className="w-6 h-6 text-brand-primary group-hover:text-brand-accent group-hover:scale-110 transition-all duration-300" />
         </div>
 
-        <h3 className="text-xl font-bold mb-4 tracking-tight">{title}</h3>
-        <p className="text-gray-400 text-sm leading-relaxed font-light">{description}</p>
+        <h3 className="text-xl font-bold mb-4 tracking-tight text-brand-primary">{title}</h3>
+        <p className="text-gray-600 text-sm leading-relaxed font-medium">{description}</p>
     </motion.div>
 );
 
@@ -59,12 +59,12 @@ export default function IndustriesServed() {
     ];
 
     return (
-        <section className="py-32 px-6 relative bg-[#000000]">
-            <div className="max-w-6xl mx-auto">
-                <div className="mb-20 text-center max-w-2xl mx-auto">
-                    <span className="text-blue-500 text-xs font-bold uppercase tracking-widest block mb-4">Market Reach</span>
-                    <h2 className="text-4xl md:text-5xl font-bold tracking-tight mb-6">Industries Powering India.</h2>
-                    <p className="text-lg text-gray-400 font-light leading-relaxed">
+        <section className="py-24 px-6 relative bg-brand-surface">
+            <div className="max-w-7xl mx-auto">
+                <div className="mb-16 text-center max-w-2xl mx-auto">
+                    <span className="text-brand-accent text-sm font-bold uppercase tracking-widest block mb-4">Market Reach</span>
+                    <h2 className="text-4xl md:text-5xl font-extrabold tracking-tight mb-6 text-brand-primary">Industries Powering India</h2>
+                    <p className="text-lg text-gray-600 font-medium leading-relaxed">
                         Supplying baseline continuous thermal energy across the manufacturing spectrum.
                     </p>
                 </div>

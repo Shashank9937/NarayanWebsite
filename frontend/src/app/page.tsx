@@ -14,21 +14,21 @@ import PremiumLoader from "@/components/PremiumLoader";
 
 export default function Home() {
   return (
-    <main className="bg-[#000000] text-white min-h-screen font-body selection:bg-blue-500/30">
+    <main className="bg-brand-background text-brand-primary min-h-screen font-body selection:bg-brand-accent/20">
       <PremiumLoader />
       <Navbar />
       <Hero />
       <CorporateOverview />
       <BusinessSegments />
-      <div className="w-full h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
+      <div className="w-full h-px bg-gradient-to-r from-transparent via-brand-border to-transparent" />
       <IndustriesServed />
-      <div className="w-full h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
+      <div className="w-full h-px bg-gradient-to-r from-transparent via-brand-border to-transparent" />
       <GlobalImpact />
       <StrategicBoard />
       <SustainabilityESG />
       <InfrastructureOperations />
       <GovernanceCompliance />
-      <div className="py-24 px-6 bg-[#000000]">
+      <div className="py-24 px-6 bg-brand-surface">
         <EnterpriseInquiry />
       </div>
       <Footer />
