@@ -1,9 +1,11 @@
-import { Router } from 'express';
-import { createInquiry, getInquiries } from '../controllers/inquiryController';
+import express from 'express';
+import { submitInquiry, getInquiries, updateInquiryStatus } from '../controllers/inquiryController';
+import { authenticateToken } from '../middleware/authMiddleware';
 
-const router = Router();
+const router = express.Router();
 
-router.post('/', createInquiry);
-router.get('/', getInquiries); // Note: Should be protected in production
+router.post('/', submitInquiry); // Public endpoint
+router.get('/', authenticateToken, getInquiries); // Admin only
+router.put('/:id/status', authenticateToken, updateInquiryStatus); // Admin only
 
 export default router;

@@ -5,9 +5,11 @@ import helmet from 'helmet';
 import morgan from 'morgan';
 import rateLimit from 'express-rate-limit';
 import dotenv from 'dotenv';
-import path from 'path';
 
 import inquiryRoutes from './routes/inquiryRoutes';
+import authRoutes from './routes/authRoutes';
+import contentRoutes from './routes/contentRoutes';
+import productRoutes from './routes/productRoutes';
 
 dotenv.config();
 
@@ -29,6 +31,9 @@ const limiter = rateLimit({
 app.use('/api/', limiter);
 
 // Routes
+app.use('/api/auth', authRoutes);
+app.use('/api/content', contentRoutes);
+app.use('/api/products', productRoutes);
 app.use('/api/inquiries', inquiryRoutes);
 
 // Infrastructure & Health Check
@@ -37,7 +42,7 @@ app.get('/health', (req: Request, res: Response) => {
 });
 
 // Database Connection
-const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost:27017/narayan-enterprises';
+const MONGODB_URI = process.env.MONGODB_URI || process.env.MONGO_URI || 'mongodb://127.0.0.1:27017/narayan-enterprises';
 mongoose.connect(MONGODB_URI)
     .then(() => console.log('Connected to MongoDB Atlas / Local'))
     .catch((err) => console.error('MongoDB connection error:', err));

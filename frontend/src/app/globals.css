@@ -1,38 +1,36 @@
 @import "tailwindcss";
 
 @theme {
-  --color-brand-blue: #1A2849;
-  --color-brand-green: #90C246;
-  --color-brand-lightgreen: #F2F8E9;
-  --color-brand-text: #666666;
-  --color-brand-gray: #F8F9FA;
-  --font-sans: "Open Sans", "Helvetica Neue", Arial, sans-serif;
+  --color-brand-primary: #111827;
+  /* Dark grayish black for text/headers */
+  --color-brand-accent: #22C55E;
+  /* Modern neon-ish green for CTAs */
+  --color-brand-surface: #F9FAFB;
+  /* Very light gray for section backgrounds */
+  --color-brand-white: #FFFFFF;
+  --font-sans: "Inter", "Helvetica Neue", sans-serif;
 }
 
 @layer base {
   body {
-    background: #FFFFFF;
-    color: var(--color-brand-text);
+    background-color: var(--color-brand-white);
+    color: var(--color-brand-primary);
     font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 }
 
-.rajaram-title {
-  display: flex;
-  font-weight: 700;
-  font-size: 2.25rem;
-  letter-spacing: 0.15em;
-  margin-bottom: 2rem;
-  text-transform: uppercase;
+/* Glassmorphism utility */
+.glass {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
 }
 
-.rajaram-title-part1 {
-  background-color: var(--color-brand-lightgreen);
-  color: var(--color-brand-blue);
-  padding: 0.25rem 0.5rem;
-}
-
-.rajaram-title-part2 {
-  color: var(--color-brand-green);
-  padding: 0.25rem 0.5rem;
+.gradient-text {
+  background: linear-gradient(135deg, #111827 0%, #4B5563 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }

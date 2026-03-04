@@ -1,29 +1,12 @@
-import mongoose, { Schema, Document } from 'mongoose';
+import mongoose from 'mongoose';
 
-export interface IInquiry extends Document {
-    organizationName: string;
-    procurementHead: string;
-    email: string;
-    phone: string;
-    monthlyRequirement: string;
-    fuelType: string;
-    location: string;
-    message: string;
-    status: 'pending' | 'reviewed' | 'contacted';
-    createdAt: Date;
-}
-
-const InquirySchema: Schema = new Schema({
-    organizationName: { type: String, required: true },
-    procurementHead: { type: String, required: true },
-    email: { type: String, required: true },
+const inquirySchema = new mongoose.Schema({
+    name: { type: String, required: true },
+    company: { type: String },
     phone: { type: String, required: true },
-    monthlyRequirement: { type: String, required: true },
-    fuelType: { type: String, required: true },
-    location: { type: String, required: true },
-    message: { type: String },
-    status: { type: String, enum: ['pending', 'reviewed', 'contacted'], default: 'pending' },
-    createdAt: { type: Date, default: Date.now },
-});
+    email: { type: String, required: true },
+    requirement: { type: String, required: true },
+    status: { type: String, default: 'new' }, // new, contacted, closed
+}, { timestamps: true });
 
-export default mongoose.model<IInquiry>('Inquiry', InquirySchema);
+export const Inquiry = mongoose.model('Inquiry', inquirySchema);

@@ -1,45 +1,31 @@
 import { Request, Response } from 'express';
-import Inquiry from '../models/Inquiry';
-import nodemailer from 'nodemailer';
+import { Inquiry } from '../models/Inquiry';
 
-export const createInquiry = async (req: Request, res: Response) => {
+export const submitInquiry = async (req: Request, res: Response): Promise<void> => {
     try {
-        const inquiryData = req.body;
-        const newInquiry = new Inquiry(inquiryData);
-        await newInquiry.save();
-
-        // Optional: Send email alert (configured via ENV)
-        if (process.env.EMAIL_USER && process.env.EMAIL_PASS) {
-            const transporter = nodemailer.createTransport({
-                service: 'gmail',
-                auth: {
-                    user: process.env.EMAIL_USER,
-                    pass: process.env.EMAIL_PASS,
-                },
-            });
-
-            const mailOptions = {
-                from: process.env.EMAIL_USER,
-                to: process.env.ADMIN_EMAIL || process.env.EMAIL_USER,
-                subject: `New Enterprise Inquiry: ${inquiryData.organizationName}`,
-                text: `New inquiry received from ${inquiryData.procurementHead} at ${inquiryData.organizationName}.\nMonthly Requirement: ${inquiryData.monthlyRequirement}\nLocation: ${inquiryData.location}`,
-            };
-
-            await transporter.sendMail(mailOptions);
-        }
-
-        res.status(201).json({ message: 'Inquiry submitted successfully', id: newInquiry._id });
-    } catch (error) {
-        console.error('Error creating inquiry:', error);
-        res.status(500).json({ message: 'Internal server error' });
+        const inquiry = await Inquiry.create(req.body);
+        res.status(201).json({ message: 'Inquiry submitted', inquiry });
+    } catch (err) {
+        res.status(500).json({ message: 'Server error', error: err });
     }
 };
 
-export const getInquiries = async (req: Request, res: Response) => {
+export const getInquiries = async (req: Request, res: Response): Promise<void> => {
     try {
         const inquiries = await Inquiry.find().sort({ createdAt: -1 });
-        res.status(200).json(inquiries);
-    } catch (error) {
-        res.status(500).json({ message: 'Internal server error' });
+        res.json(inquiries);
+    } catch (err) {
+        res.status(500).json({ message: 'Server error', error: err });
+    }
+};
+
+export const updateInquiryStatus = async (req: Request, res: Response): Promise<void> => {
+    try {
+        const { status } = req.body;
+        const inquiry = await Inquiry.findByIdAndUpdate(req.params.id, { status }, { new: true });
+        if (!inquiry) { res.status(404).json({ message: 'Not found' }); return; }
+        res.json(inquiry);
+    } catch (err) {
+        res.status(500).json({ message: 'Server error', error: err });
     }
 };
