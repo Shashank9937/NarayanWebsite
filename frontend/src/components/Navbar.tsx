@@ -1,5 +1,7 @@
-import React from 'react';
-import { LucideIcon } from 'lucide-react';
+"use client";
+
+import React, { useState, useEffect } from 'react';
+import { ChevronRight } from 'lucide-react';
 
 interface NavItemProps {
     label: string;
@@ -9,35 +11,49 @@ interface NavItemProps {
 const NavItem = ({ label, href }: NavItemProps) => (
     <a
         href={href}
-        className="text-sm font-medium text-gray-400 hover:text-white transition-colors duration-300 uppercase tracking-widest"
+        className="text-sm font-medium text-gray-400 hover:text-white transition-colors duration-300 px-4 py-2 rounded-full hover:bg-white/5"
     >
         {label}
     </a>
 );
 
 export default function Navbar() {
+    const [scrolled, setScrolled] = useState(false);
+
+    useEffect(() => {
+        const handleScroll = () => {
+            setScrolled(window.scrollY > 20);
+        };
+        window.addEventListener('scroll', handleScroll);
+        return () => window.removeEventListener('scroll', handleScroll);
+    }, []);
+
     return (
-        <nav className="fixed top-0 w-full z-50 glass-morphism border-b border-white/5 py-4 px-12 flex justify-between items-center backdrop-blur-3xl">
-            <div className="flex items-center gap-3">
-                <div className="w-10 h-10 bg-brand-green rounded-sm flex items-center justify-center font-bold text-black shadow-[0_0_20px_rgba(0,255,157,0.4)]">
-                    N
+        <nav className={`fixed top-4 left-1/2 -translate-x-1/2 w-[95%] max-w-5xl z-50 transition-all duration-500 ${scrolled ? 'py-3' : 'py-4'}`}>
+            <div className="glass-panel floating-shadow px-6 py-3 flex justify-between items-center w-full">
+
+                <div className="flex items-center gap-3">
+                    <div className="w-8 h-8 bg-gradient-to-br from-white to-gray-400 rounded-full flex items-center justify-center font-bold text-black text-sm">
+                        N
+                    </div>
+                    <span className="text-lg font-bold tracking-tight text-white hidden sm:block">
+                        Narayan<span className="text-gray-400 font-medium">Energy</span>
+                    </span>
                 </div>
-                <span className="text-xl font-bold tracking-tighter uppercase font-heading">
-                    Narayan <span className="text-brand-green">Enterprises</span>
-                </span>
-            </div>
 
-            <div className="hidden md:flex gap-12">
-                <NavItem label="Solutions" href="#solutions" />
-                <NavItem label="Operations" href="#operations" />
-                <NavItem label="Sustainability" href="#sustainability" />
-                <NavItem label="Strategic" href="#investors" />
-            </div>
+                <div className="hidden md:flex items-center gap-2">
+                    <NavItem label="Products" href="#solutions" />
+                    <NavItem label="Infrastructure" href="#operations" />
+                    <NavItem label="Sustainability" href="#sustainability" />
+                    <NavItem label="Company" href="#investors" />
+                </div>
 
-            <button className="relative group overflow-hidden bg-brand-green text-black px-10 py-3 text-xs font-bold uppercase tracking-widest transition-all duration-300 hover:shadow-[0_0_30px_rgba(0,255,157,0.6)]">
-                <span className="relative z-10">Request Industrial Quote</span>
-                <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300" />
-            </button>
+                <button className="group relative overflow-hidden bg-white text-black px-6 py-2.5 rounded-full text-sm font-medium transition-all duration-300 hover:scale-105 flex items-center gap-2">
+                    <span>Get Quote</span>
+                    <ChevronRight className="w-4 h-4 text-gray-500 group-hover:text-black transition-colors" />
+                </button>
+
+            </div>
         </nav>
     );
 }
