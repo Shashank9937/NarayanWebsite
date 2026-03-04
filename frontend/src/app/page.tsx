@@ -2,6 +2,8 @@ import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import CorporateOverview from "@/components/CorporateOverview";
 import BusinessSegments from "@/components/BusinessSegments";
+import ManufacturingProcess from "@/components/ManufacturingProcess";
+import FuelComparison from "@/components/FuelComparison";
 import IndustriesServed from "@/components/IndustriesServed";
 import GlobalImpact from "@/components/GlobalImpact";
 import StrategicBoard from "@/components/StrategicBoard";
@@ -20,6 +22,9 @@ export default function Home() {
       <Hero />
       <CorporateOverview />
       <BusinessSegments />
+      <ManufacturingProcess />
+      <div className="w-full h-px bg-gradient-to-r from-transparent via-brand-border to-transparent" />
+      <FuelComparison />
       <div className="w-full h-px bg-gradient-to-r from-transparent via-brand-border to-transparent" />
       <IndustriesServed />
       <div className="w-full h-px bg-gradient-to-r from-transparent via-brand-border to-transparent" />
